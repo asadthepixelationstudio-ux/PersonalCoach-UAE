@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoachConnect - Professional Coaching Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 10px;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        .logo-icon i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        .logo-tagline {
+            font-size: 12px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .auth-buttons {
+            display: flex;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://source.unsplash.com/random/1600x900/?fitness,coaching') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Coaches Section */
+        .coaches {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .coach-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .coach-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coach-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .coach-info {
+            padding: 20px;
+        }
+        
+        .coach-info h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .coach-specialty {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .coach-rating {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+        
+        .coach-price {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .booking-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .booking-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .booking-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 10px;
+            background-image: url('https://source.unsplash.com/random/600x400/?booking,calendar');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        /* Calendly Section */
+        .calendly-section {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .calendly-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .calendly-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .calendly-widget {
+            flex: 1;
+            min-width: 300px;
+            height: 600px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(52, 152, 219, 0.9), rgba(52, 152, 219, 0.9)), url('https://source.unsplash.com/random/1600x900/?success,achievement') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-large {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+            
+            .booking-container, .calendly-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>CoachConnect</h1>
+                    <span class="logo-tagline">Find Your Perfect Coach</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#coaches">Find Coaches</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#calendly">Book Now</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Connect with Professional Coaches</h2>
+            <p>Book personalized coaching sessions, track your progress, and achieve your goals with our secure marketplace platform.</p>
+            <div class="hero-buttons">
+                <a href="#calendly" class="btn btn-primary btn-large">Book a Session Now</a>
+                <a href="#" class="btn btn-outline btn-large">Become a Coach</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose CoachConnect</h2>
+                <p>Our platform offers everything you need for a seamless coaching experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Platform</h3>
+                    <p>End-to-end encrypted messaging with location sharing and chat monitoring for your safety.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Easy Payments</h3>
+                    <p>Pay with cash, card, or Apple Pay. Automatic 90/10 split ensures coaches get paid promptly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Flexible Booking</h3>
+                    <p>Choose from pre-set sessions or request custom slots that fit your schedule.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Verified Ratings</h3>
+                    <p>Read authentic reviews and ratings from previous clients to make informed decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h3>Gender-Based Access</h3>
+                    <p>Separate interfaces for male and female users with appropriate matching preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your improvement over time with our integrated progress tracking tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaches Section -->
+    <section id="coaches" class="coaches">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Coaches</h2>
+                <p>Browse our verified professional coaches with diverse specialties</p>
+            </div>
+            <div class="coaches-grid">
+                <div class="coach-card">
+                    <div class="coach-image" style="background-image: url('https://source.unsplash.com/random/600x400/?fitness,trainer')"></div>
+                    <div class="coach-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="coach-specialty">Yoga & Mindfulness</p>
+                        <div class="coach-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (128 reviews)</span>
+                        </div>
+                        <p class="coach-price">$45 / session</p>
+                        <a href="#calendly" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="coach-card">
+                    <div class="coach-image" style="background-image: url('https://source.unsplash.com/random/600x400/?personal,trainer')"></div>
+                    <div class="coach-info">
+                        <h3>Michael Rodriguez</h3>
+                        <p class="coach-specialty">Strength & Conditioning</p>
+                        <div class="coach-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (94 reviews)</span>
+                        </div>
+                        <p class="coach-price">$60 / session</p>
+                        <a href="#calendly" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="coach-card">
+                    <div class="coach-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nutrition,coach')"></div>
+                    <div class="coach-info">
+                        <h3>Jennifer Lee</h3>
+                        <p class="coach-specialty">Nutrition & Wellness</p>
+                        <div class="coach-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (156 reviews)</span>
+                        </div>
+                        <p class="coach-price">$55 / session</p>
+                        <a href="#calendly" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience Products</h2>
+                <p>Enhance your coaching journey with our curated experience packages</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?yoga,retreat')"></div>
+                    <div class="product-info">
+                        <h3>Mindful Yoga Retreat</h3>
+                        <p class="product-description">A 3-day immersive yoga experience with meditation sessions, healthy meals, and nature walks.</p>
+                        <p class="product-price">$299</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nutrition,workshop')"></div>
+                    <div class="product-info">
+                        <h3>Nutrition Masterclass</h3>
+                        <p class="product-description">Learn meal planning, macro tracking, and healthy cooking techniques from certified nutritionists.</p>
+                        <p class="product-price">$149</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?fitness,bootcamp')"></div>
+                    <div class="product-info">
+                        <h3>Fitness Bootcamp</h3>
+                        <p class="product-description">4-week intensive training program with personalized workouts, progress tracking, and group support.</p>
+                        <p class="product-price">$199</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?meditation,class')"></div>
+                    <div class="product-info">
+                        <h3>Meditation & Mindfulness</h3>
+                        <p class="product-description">8-week program to reduce stress, improve focus, and develop a consistent meditation practice.</p>
+                        <p class="product-price">$129</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?strength,training')"></div>
+                    <div class="product-info">
+                        <h3>Strength Training Fundamentals</h3>
+                        <p class="product-description">Master proper form, technique, and programming for effective strength building and injury prevention.</p>
+                        <p class="product-price">$179</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://source.unsplash.com/random/600x400/?wellness,coaching')"></div>
+                    <div class="product-info">
+                        <h3>Holistic Wellness Package</h3>
+                        <p class="product-description">Comprehensive 12-week program combining fitness, nutrition, and mindfulness for complete wellness.</p>
+                        <p class="product-price">$399</p>
+                        <a href="#" class="btn btn-success" style="width: 100%;">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendly Section -->
+    <section id="calendly" class="calendly-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Schedule Your Session</h2>
+                <p>Book a discovery call or coaching session directly with our professionals</p>
+            </div>
+            <div class="calendly-container">
+                <div class="calendly-info">
+                    <h3>Easy Scheduling with Calendly</h3>
+                    <p>Our integrated Calendly system makes booking sessions simple and convenient:</p>
+                    <ul style="margin: 20px 0 20px 20px;">
+                        <li style="margin-bottom: 10px;">See real-time availability of coaches</li>
+                        <li style="margin-bottom: 10px;">Book sessions instantly without back-and-forth emails</li>
+                        <li style="margin-bottom: 10px;">Automatically receive calendar invites and reminders</li>
+                        <li style="margin-bottom: 10px;">Reschedule or cancel easily when needed</li>
+                    </ul>
+                    <p>Select your preferred coach, choose an available time slot, and confirm your booking in just a few clicks.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">View All Coaches</a>
+                </div>
+                <div class="calendly-widget">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/example" style="min-width:320px;height:600px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Coaching Experience?</h2>
+            <p>Join thousands of clients and coaches who are already achieving their goals with CoachConnect</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary btn-large">Sign Up Now</a>
+                <a href="#" class="btn btn-outline btn-large">Download Our App</a>
+            </div>
+            <div class="social-links" style="justify-content: center; margin-top: 40px;">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <div class="logo-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1 style="color: white; font-size: 20px;">CoachConnect</h1>
+                            <span class="logo-tagline" style="color: #bbb;">Find Your Perfect Coach</span>
+                        </div>
+                    </div>
+                    <p style="color: #bbb; margin-bottom: 20px;">The leading platform connecting clients with professional coaches for personalized training experiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>For Clients</h3>
+                    <ul>
+                        <li><a href="#">Find a Coach</a></li>
+                        <li><a href="#">Booking Process</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                        <li><a href="#">Guest Checkout</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Coaches</h3>
+                    <ul>
+                        <li><a href="#">Become a Coach</a></li>
+                        <li><a href="#">Coach Dashboard</a></li>
+                        <li><a href="#">Payment & Earnings</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Coach Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CoachConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for demo purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling to all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation to feature cards on scroll
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            featureCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+            
+            // Product buy button functionality
+            const buyButtons = document.querySelectorAll('.btn-success');
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productName = this.closest('.product-card').querySelector('h3').textContent;
+                    alert(`Thank you for your interest in "${productName}"! You will be redirected to the checkout page.`);
+                });
+            });
+            
+            // Initialize Calendly widget
+            if (typeof Calendly !== 'undefined') {
+                Calendly.initBadgeWidget({
+                    url: 'https://calendly.com/example',
+                    text: 'Schedule time with me',
+                    color: '#00a2ff',
+                    textColor: '#ffffff',
+                    branding: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>
